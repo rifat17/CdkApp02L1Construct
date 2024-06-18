@@ -1,28 +1,38 @@
 #!/usr/bin/env python3
-import os
-
 import aws_cdk as cdk
+from typing import cast
+
+from aws_pdk.cdk_graph import CdkGraph, ICdkGraphPlugin
+from aws_pdk.cdk_graph_plugin_diagram import (
+    CdkGraphDiagramPlugin,
+    DiagramFormat,
+)
 
 from cdk_app_02_l1.cdk_app_02_l1_stack import CdkApp02L1Stack
+from cdk_app_02_l1.constants import REGION, STACK_NAME, ACCOUNT
 
 
 app = cdk.App()
-CdkApp02L1Stack(app, "CdkApp02L1Stack",
-    # If you don't specify 'env', this stack will be environment-agnostic.
-    # Account/Region-dependent features and context lookups will not work,
-    # but a single synthesized template can be deployed anywhere.
+CdkApp02L1Stack(
+    app,
+    STACK_NAME,
+    env=cdk.Environment(account=ACCOUNT, region=REGION),
+)
 
-    # Uncomment the next line to specialize this stack for the AWS Account
-    # and Region that are implied by the current CLI configuration.
+# app.synth()
 
-    #env=cdk.Environment(account=os.getenv('CDK_DEFAULT_ACCOUNT'), region=os.getenv('CDK_DEFAULT_REGION')),
 
-    # Uncomment the next line if you know exactly what Account and Region you
-    # want to deploy the stack to. */
+graph_plugin = CdkGraphDiagramPlugin(
+    diagrams=[
+        {
+            "name": "cdk_graph_diagram",
+            "title": "AWS stack",
+            "format": DiagramFormat.PNG,
+        }
+    ]
+)
+graph = CdkGraph(app, plugins=[cast(ICdkGraphPlugin, graph_plugin)])
 
-    #env=cdk.Environment(account='123456789012', region='us-east-1'),
-
-    # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
-    )
-
-app.synth()
+if __name__ == "__main__":
+    app.synth()
+    graph.report()

@@ -1,9 +1,11 @@
 
 # Welcome to your CDK Python project!
 
-This is a blank project for CDK development with Python.
+![Diagram]("./cdk_app_02_l1/diagrams/diagram.cdk_graph_diagram.png")
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+This is a CDK development with Python.
+
+The `cdk.json` file tells the CDK Toolkit how to execute this app.
 
 This project is set up like a standard Python project.  The initialization
 process also creates a virtualenv within this project, stored under the `.venv`
@@ -56,3 +58,12 @@ command.
  * `cdk docs`        open CDK documentation
 
 Enjoy!
+
+
+Architectural Diagram:
+
+`pip install aws-pdk`
+
+Mac `brew install graphviz`
+
+
