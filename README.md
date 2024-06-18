@@ -1,5 +1,5 @@
 
-# Welcome to your CDK Python project!
+# Welcome to CDK Python project!
 
 ![Diagram](./cdk_app_02_l1/diagrams/diagram.cdk_graph_diagram.png)
 
