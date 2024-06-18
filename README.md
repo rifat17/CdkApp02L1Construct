@@ -1,7 +1,7 @@
 
 # Welcome to your CDK Python project!
 
-![Diagram]("./cdk_app_02_l1/diagrams/diagram.cdk_graph_diagram.png")
+![Diagram](./cdk_app_02_l1/diagrams/diagram.cdk_graph_diagram.png)
 
 This is a CDK development with Python.
 
