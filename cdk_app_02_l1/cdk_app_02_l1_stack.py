@@ -4,7 +4,7 @@ from aws_cdk import (
     CfnTag,
 )
 from constructs import Construct
-from cdk_app_02_l1.models import SubnetAccessEnum
+from cdk_app_02_l1.models import SubnetType
 from cdk_app_02_l1.constants import STACK_NAME
 
 class CdkApp02L1Stack(Stack):
@@ -32,15 +32,15 @@ class CdkApp02L1Stack(Stack):
         )
 
         subnets = [
-            {"cidr_block": "10.0.0.0/24", "access": SubnetAccessEnum.PUBLIC},
-            {"cidr_block": "10.0.1.0/24", "access": SubnetAccessEnum.PUBLIC},
-            {"cidr_block": "10.0.2.0/24", "access": SubnetAccessEnum.PRIVATE},
-            {"cidr_block": "10.0.3.0/24", "access": SubnetAccessEnum.PRIVATE},
+            {"cidr_block": "10.0.0.0/24", "access": SubnetType.PUBLIC},
+            {"cidr_block": "10.0.1.0/24", "access": SubnetType.PUBLIC},
+            {"cidr_block": "10.0.2.0/24", "access": SubnetType.PRIVATE},
+            {"cidr_block": "10.0.3.0/24", "access": SubnetType.PRIVATE},
         ]
 
         for idx, subnet_config in enumerate(subnets):
             subnet_logical_id = f"{subnet_config.get("access")}Subnet{idx+1}"
-            is_public_subnet = subnet_config.get("access") == SubnetAccessEnum.PUBLIC
+            is_public_subnet = subnet_config.get("access") == SubnetType.PUBLIC
             cidr_block = subnet_config.get("cidr_block")
 
             subnet = ec2.CfnSubnet(
